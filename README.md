@@ -13,9 +13,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.12.
-
 ## Run UI server
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.12.
 
 ### install packages
 
