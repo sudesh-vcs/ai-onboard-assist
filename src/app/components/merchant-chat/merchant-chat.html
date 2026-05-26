@@ -1,0 +1,91 @@
+<div class="chat-container">
+    <div class="chat-header">
+        <h2>🚀 AI Merchant Onboarding</h2>
+        <div class="header-actions">
+            <button *ngIf="connectionError" class="retry-btn" (click)="retryConnection()" title="Retry connection">
+                🔄 Retry
+            </button>
+            <button class="reset-btn" (click)="resetChat()" title="Start Over">
+                ↻ New
+            </button>
+        </div>
+    </div>
+
+    <!-- Connection Error Banner -->
+    <div *ngIf="connectionError" class="error-banner">
+        ⚠️ Backend connection lost.
+        <button (click)="retryConnection()">Retry Connection</button>
+    </div>
+
+    <div class="chat-messages" #scrollContainer>
+        <div *ngFor="let message of messages; let i = index; trackBy: trackByFn" [ngClass]="'message ' + message.role">
+
+            <div class="message-avatar">
+                <span *ngIf="message.role === 'system'">🤖</span>
+                <span *ngIf="message.role === 'user'">👤</span>
+                <span *ngIf="message.role === 'assistant'">💬</span>
+            </div>
+
+            <div class="message-content">
+                <!-- Main conversational message -->
+                <div class="message-text" [innerHTML]="formatMessage(message.content)"></div>
+
+                <!-- ONLY show summary when onboarding is complete -->
+                <div *ngIf="message.showSummary && message.summaryData" class="onboarding-summary">
+                    <div class="summary-header">✅ Onboarding Complete - Summary</div>
+                    <div class="summary-grid">
+                        <div class="summary-item" *ngIf="message.summaryData.Organization">
+                            <span class="summary-label">🏢 Organization</span>
+                            <span class="summary-value">{{ message.summaryData.Organization }}</span>
+                        </div>
+                        <div class="summary-item" *ngIf="message.summaryData.MID">
+                            <span class="summary-label">🆔 Merchant ID</span>
+                            <span class="summary-value">{{ message.summaryData.MID }}</span>
+                        </div>
+                        <div class="summary-item" *ngIf="message.summaryData.Address">
+                            <span class="summary-label">📍 Address</span>
+                            <span class="summary-value">{{ message.summaryData.Address }}</span>
+                        </div>
+                        <div class="summary-item" *ngIf="message.summaryData.Contact?.phone">
+                            <span class="summary-label">📞 Phone</span>
+                            <span class="summary-value">{{ message.summaryData.Contact.phone }}</span>
+                        </div>
+                        <div class="summary-item" *ngIf="message.summaryData.Contact?.email">
+                            <span class="summary-label">📧 Email</span>
+                            <span class="summary-value">{{ message.summaryData.Contact.email }}</span>
+                        </div>
+                        <div class="summary-item" *ngIf="message.summaryData.Contact?.name">
+                            <span class="summary-label">👤 Contact Name</span>
+                            <span class="summary-value">{{ message.summaryData.Contact.name }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-time">
+                    {{ message.timestamp | date:'shortTime' }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div *ngIf="isLoading" class="message assistant">
+            <div class="message-avatar">💬</div>
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <textarea [(ngModel)]="userInput" (keypress)="onKeyPress($event)"
+            [placeholder]="isConfirming ? 'Type yes/no/edit...' : 'Type your message...'" rows="2"
+            [disabled]="isLoading">
+    </textarea>
+        <button (click)="sendMessage()" [disabled]="!userInput.trim() || isLoading" class="send-btn">
+            <span *ngIf="!isLoading">Send</span>
+            <span *ngIf="isLoading">⏳</span>
+        </button>
+    </div>
+</div>

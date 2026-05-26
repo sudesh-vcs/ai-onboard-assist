@@ -1,0 +1,104 @@
+
+# ==========================================
+# Python (Backend) Gitignore
+# ==========================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables (Keep your secrets safe!)
+.env
+.env.*
+!.env.example
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# Angular (Frontend) Gitignore
+# ==========================================
+
+# Dependencies
+node_modules/
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# IDEs and editors
+.history
+.project
+.ide/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pid
+*.pid
+*.seed
+*.pid.lock
+
+# Frameworks and system files
+.ekst/
+.angular/
+.cache/
+
+# Testing
+/coverage
+/.nyc_output
+
+# Port forward / Cypress / End-to-End
+/cypress/videos
+/cypress/screenshots
+
+# OS generated files
+.DS_Store
+Thumbs.db
