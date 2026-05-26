@@ -17,14 +17,11 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Run UI server
 
-### build and start
+### install packages
 
 ```bash
-yarn start
+yarn install
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
 
 ### build
 
@@ -35,6 +32,19 @@ yarn build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+### build and start
+
+```bash
+yarn start
+```
+
+---
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+
+
 
 
 
